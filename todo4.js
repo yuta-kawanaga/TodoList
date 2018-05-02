@@ -15,9 +15,10 @@ $(function(){
 	function addTodo(text,isComplete){
 		//リストアイテムを作成
 		let liEl = $("<li>");
-		let textEl = $('<span id = "text">').text(text);
+		let textEl = $('<span id = "text" contenteditable="true">').text(text);
 		let checkboxEl = $('<input type = "checkbox">');
-		let deleteEl = $('<button id = "deletebtn">削除</button>')
+		let deleteEl = $('<button id = "deletebtn">削除</button>');
+		let editEl = $('<button id = "editbtn">確定</button>')
 
 		//完了の場合
 		if(isComplete){
@@ -26,7 +27,7 @@ $(function(){
 		}
 
 		//追加する要素の作成
-		liEl.append(checkboxEl).append(textEl).append(deleteEl);
+		liEl.append(checkboxEl).append(textEl).append(editEl).append(deleteEl);
 
 		//リストに追加する
 		viewEl.prepend(liEl);
@@ -49,6 +50,12 @@ $(function(){
 			if(window.confirm("削除してもよろしいですか？")){
 				liEl.remove();
 			}
+			//LocalStorageを更新
+			updateStorage();
+		});
+
+		//確定ボタンが押されたとき
+		editEl.click(function(){
 			//LocalStorageを更新
 			updateStorage();
 		});
