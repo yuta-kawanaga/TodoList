@@ -62,6 +62,11 @@ $(function(){
 		//入力文字を取得
 		let text = inputEl.val();
 
+		//入力がなかった場合追加しない
+		if(text === ""){
+			return;
+		}
+
 		//<ul>に追加
 		addTodo(text);
 
