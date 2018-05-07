@@ -17,8 +17,8 @@ $(function(){
 		let liEl = $("<li>");
 		let textEl = $('<span id = "text" contenteditable="true">').text(text);
 		let checkboxEl = $('<input type = "checkbox">');
-		let deleteEl = $('<button id = "deletebtn">削除</button>');
-		let editEl = $('<button id = "editbtn">確定</button>')
+		let deleteEl = $('<button id = "deletebtn"><i class="far fa-trash-alt fa-2x"></i></button>');
+		let editEl = $('<button id = "editbtn" data-iziModal-open=".iziModal"><i class="far fa-save fa-2x"></i></button>')
 
 		//完了の場合
 		if(isComplete){
@@ -58,6 +58,8 @@ $(function(){
 		editEl.click(function(){
 			//LocalStorageを更新
 			updateStorage();
+			//ダイアログを出す
+			$(".iziModal").iziModal({timeout : 900, padding : 15　,top: 10});
 		});
 	}
 
@@ -90,10 +92,12 @@ $(function(){
 
 		//現在のリストを全て取得
 		viewEl.find("li").each(function(){
+			console.log(this);
+
 			let itemEl = $(this);
 
 			//テキストとチェックボックスの状態を保存
-			storage.push({
+			storage.unshift({
 				text:itemEl.find("#text").text(),
 				complete:itemEl.hasClass("complete")
 			});

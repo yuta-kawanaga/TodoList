@@ -11,22 +11,36 @@
             text-decoration: line-through;
         }
     </style>
+    <link rel="stylesheet" href="todo4.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <title>ToDoList</title>
 </head>
 <body>
     <h1 id = "title">ToDo</h1>
     <form id = "todoForm">
         <input type = "text" id = "todoInput" placeholder = "Todoを入力してください">
-        <input type = "submit" value = "追加">
+        <button id = "submitbtn"><i class="far fa-paper-plane fa-2x"></i></button>
     </form>
 
     <ul id = "viewList">
     </ul>
-    
+
+    <!-- / .iziModal -->
+    <div class="iziModal" >
+        <p>保存しました</p>
+    </div>
+
     <script
     src="http://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
-	<script src="todo4.js"></script>
+
+    <script type="text/javascript" src="./js/iziModal.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./css/iziModal.css" media="screen" />
+
+    <script src="todo4.js"></script>
+    
 </body>
 </html>

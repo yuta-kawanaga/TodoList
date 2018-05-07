@@ -1,0 +1,60 @@
+html{
+    font-family: 'Hannotate SC',sans-serif;
+}
+
+#title{
+    text-align: center;
+    margin: 0 0 66px;
+}
+
+
+form#todoForm{
+    text-align: center;
+    margin: 0 0 30px;
+}
+
+#viewList{
+    list-style: none;
+}
+
+input#todoInput{
+    width: 50%;
+    height: 20px;
+    font-family: 'Hannotate SC',sans-serif;
+}
+
+li{
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+span#text{
+    display: inline-block;
+    border-bottom: solid 2px skyblue;
+    width: 50%;
+    text-align: left;
+}
+
+#deletebtn { 
+    margin: 0 0 0 10px;
+    border-style:none;
+}
+
+
+#editbtn{
+    margin: 0 0 0 100px;
+    border-style:none;
+}
+
+#submitbtn{
+    border-style:none;
+}
+
+input{
+    margin: 0 10px 0 0;
+}
+
+.iziModal{
+    margin: 0 0 50px 0;
+}
+
