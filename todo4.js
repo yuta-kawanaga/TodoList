@@ -11,6 +11,29 @@ $(function(){
 		});
 	}
 
+	// フォームを送信したとき
+	$("#todoForm").on("submit",function(e){
+		// 送信を止めて処理をする
+		e.preventDefault();
+
+		// 入力文字を取得
+		let text = inputEl.val();
+
+		// 入力がなかった場合追加しない
+		if(text === ""){
+			return ;
+		}
+
+		// <ul>に追加
+		addTodo(text);
+
+		// テキストボックスを空に
+		inputEl.val("");
+
+		// LocalStorageを更新
+		updateStorage();
+	});
+
 	// Todoを追加する関数
 	function addTodo(text,isComplete){
 		// リストアイテムを作成
@@ -64,30 +87,7 @@ $(function(){
 		});
 	}
 
-	// フォームを送信したとき
-	$("#todoForm").bind("submit",function(e){
-		// フォームのデフォルトの動きを止める？
-		e.preventDefault();
-
-		// 入力文字を取得
-		let text = inputEl.val();
-
-		// 入力がなかった場合追加しない
-		if(text === ""){
-			return ;
-		}
-
-		// <ul>に追加
-		addTodo(text);
-
-		// テキストボックスを空に
-		inputEl.val("");
-
-		// LocalStorageを更新
-		updateStorage();
-	});
-
-	// LocalStorageを更新
+	// LocalStorageを更新する関数
 	function updateStorage(){
 		let storage = [];
 
