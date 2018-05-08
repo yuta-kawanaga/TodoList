@@ -53,7 +53,7 @@ $(function(){
 		liEl.append(checkboxEl).append(textEl).append(editEl).append(deleteEl);
 
 		// リストの先頭に追加する
-		viewEl.prepend(liEl);
+		viewEl.prepend(liEl).hide().fadeIn(400);
 
 		// チェックボックスをクリックしたとき
 		checkboxEl.click(function(){
@@ -72,10 +72,14 @@ $(function(){
 		deleteEl.click(function(){
 			// アラート表示
 			if(window.confirm("削除してもよろしいですか？")){
-				liEl.remove();
+				// li　をフェードアウトし LocalStorage から削除
+				liEl.fadeOut(400, function(){
+					liEl.remove();
+					updateStorage();
+				});
 			}
 			// LocalStorageを更新
-			updateStorage();
+			//updateStorage();
 		});
 
 		// 確定ボタンが押されたとき
