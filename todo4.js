@@ -1,28 +1,32 @@
 $(function () {
+	/* constを使う */
 	// 表示する場所と入力フォーム
 	let viewEl = $("#viewList");
 	let inputEl = $("#todoInput");
 
 	// HTML読み込み時にLocalStorageの内容を表示
-	let storageList = localStorage["todo.list"];
+	/* Key名 . 使わない */
+	const storageList = localStorage["todoList"];
 	if (storageList) {
 		JSON.parse(storageList).forEach(function (itemEl) {
 			addTodo(itemEl.text, itemEl.complete);
 		});
-	}
+	};
 
 	// フォームを送信したときの処理
-	$("#todoForm").on("submit", function (e) {
+	/* onclickの方がよかった　なぜ使ったいるのか意識をする */
+	$("#todoForm").on("click", function () {
 		// 空の場合送信イベントをキャンセル
-		e.preventDefault();
+		// onclickならいらない
+		//e.preventDefault();
 
 		// 入力文字を取得
 		let text = inputEl.val();
 
 		// 入力がなかった場合追加しない
 		if (text === "") {
-			return;
-		}
+			return false;
+		};
 
 		// <ul>に追加
 		addTodo(text);
@@ -55,8 +59,9 @@ $(function () {
 		// リストの先頭にフェードインで追加する
 		viewEl.prepend(liEl).hide().fadeIn(400);
 
+		// onclickでつける（古い）
 		// チェックボックスをクリックしたとき
-		checkboxEl.click(function () {
+		checkboxEl.on("click", function () {
 			// thisはcheckboxを指す
 			if ($(this).is(":checked")) {
 				liEl.addClass("complete");
@@ -69,7 +74,7 @@ $(function () {
 		});
 
 		// 削除ボタンが押されたとき
-		deleteEl.click(function () {
+		deleteEl.on("click", function () {
 			// アラート表示
 			if (window.confirm("削除してもよろしいですか？")) {
 				// li　をフェードアウトし LocalStorage から削除
@@ -81,11 +86,12 @@ $(function () {
 		});
 
 		// 確定ボタンが押されたとき
-		editEl.click(function () {
+		editEl.on("click", function () {
 			// LocalStorageを更新
 			updateStorage();
 			// 保存ダイアログを出す
-			$(".iziModal").iziModal({ timeout: 900, padding: 5　, top: 10 });
+			// 全角文字入っている paddingのあと (修正済み)
+			$(".iziModal").iziModal({ timeout: 900, padding: 5, top: 10 });
 		});
 	}
 
@@ -107,6 +113,6 @@ $(function () {
 			});
 		});
 		// JSON文字列にして保存
-		localStorage["todo.list"] = JSON.stringify(storage);
-	}
+		localStorage["todoList"] = JSON.stringify(storage);
+	};
 });
