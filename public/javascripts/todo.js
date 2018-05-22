@@ -4,7 +4,7 @@ $(function () {
 
 	// 読み込み時
 	$.ajax({
-		url: 'http://localhost:3000/all',
+		url: 'http://18.220.183.113:3000/all',
 		type: 'GET'
 	})
 		.done((res) => {
@@ -43,7 +43,7 @@ function sendForm() {
 		inputEl.val("");
 
 		$.ajax({
-			url: 'http://localhost:3000/',
+			url: 'http://18.220.183.113:3000/',
 			type: 'POST',
 			data: {
 				text: text,
