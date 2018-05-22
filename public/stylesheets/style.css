@@ -1,8 +1,83 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html{
+  font-family: 'Hannotate SC',sans-serif;
+  font-size: 3ex;
+}
+#title{
+  text-align: center;
 }
 
-a {
-  color: #00B7FF;
+#title-item{
+  display: inline-flex;
+  border-bottom: double 8px orange;
+  margin: 0 0 66px;
 }
+
+/* 打ち消し線 */
+.complete{
+  color: #CCC;
+  text-decoration: line-through;
+}
+
+form#todoForm{
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+#viewList{
+  list-style: none;
+}
+
+input#todoInput{
+  width: 50%;
+  height: 40px;
+  font-family: 'Hannotate SC',sans-serif;
+  font-size: 0.8em;
+}
+
+li{
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+span#text{
+  display: inline-flex;
+  border-bottom: solid 2px skyblue;
+  width: 50%;
+  text-align: left;
+}
+
+#deletebtn { 
+  margin: 0 0 0 30px;
+  border-style:none;
+  border-radius: 50px;
+}
+
+/* hover時透過 */
+#deletebtn:hover,#editbtn:hover,#submitbtn:hover{ 
+  opacity: 0.5;
+}
+
+#editbtn{
+  margin: 0 0 0 100px;
+  border-style:none;
+}
+
+#submitbtn{
+  border-style:none;
+}
+
+#compcheck{
+  margin: 0 15px 0 0;
+}
+
+/* チェックボックスのサイズを大きく */
+input[type="checkbox"]{
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  margin-right: 0.5em;
+}
+
+.iziModal{
+  margin: 0 0 50px 0;
+}
+
