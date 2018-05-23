@@ -78,7 +78,7 @@ function createDeleteBtn(res, i, liEl) {
 
 // 保存ボタンを作る関数
 function createSaveBtn(res, i, liEl) {
-	let saveBtn = $('<button id = "editbtn" data-iziModal-open=".iziModal"><i class="far fa-save fa-3x"></i></button>')
+	const saveBtn = $('<button id = "editbtn" data-iziModal-open=".iziModal"><i class="far fa-save fa-3x"></i></button>')
 	// 保存ボタンが押されたとき
 	saveBtn.on("click", (evt) => {
                 // li要素のテキストの内容
