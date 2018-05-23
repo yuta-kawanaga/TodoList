@@ -61,11 +61,11 @@ router.post("/", (req, res, next) => {
 router.delete("/delete", (req, res) => {
   console.log(req.body);
 
-  let data = req.body;
+  let _id = req.body;
 
   // データの削除
   const UserData = mongoose.model("UserSchema");
-  UserData.remove({ _id: data }, (err) => {
+  UserData.remove({ _id: _id }, (err) => {
 
   });
 });
@@ -77,13 +77,10 @@ router.put("/update", (req, res) => {
 
   const text = req.body.text;
   const _id = req.body._id;
-  console.log(text);
-
-
+  
   // データの更新
   const UserData = mongoose.model("UserSchema");
   UserData.update({ _id: _id }, { $set: { text: text } }, (err, data) => {
-    //   console.log(text);
   });
 });
 
