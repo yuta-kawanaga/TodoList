@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 const mongoose = require("mongoose");
@@ -14,13 +14,13 @@ mongoose.connect("mongodb://localhost/todo", (err) => {
 });
 
 // GET home page. 
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get("/", function (req, res, next) {
+  res.render("index", { title: "Express" });
 });
 
 
 // 読み込み時表示処理 
-router.get('/all', function (req, res, next) {
+router.get('/all', function (req, res) {
   // コレクション生成
   const UserData = mongoose.model("UserSchema");
 
@@ -32,7 +32,7 @@ router.get('/all', function (req, res, next) {
 });
 
 // データの挿入処理
-router.post("/", (req, res, next) => {
+router.post("/", (req, res) => {
   // コレクション生成
   const UserData = mongoose.model("UserSchema");
   const userData = new UserData();
@@ -46,12 +46,7 @@ router.post("/", (req, res, next) => {
       console.log(`Insert Fail!!${err}`);
     }
     else {
-      // 全文検索
-      UserData.find({}, (err, docs) => {
-        for (let cnt = 0; cnt < docs.length; cnt++) {
-          console.log(docs[cnt]);
-        }
-      });
+      console.log("Insert success");
     }
   });
 });
@@ -59,28 +54,39 @@ router.post("/", (req, res, next) => {
 
 // データの物理削除
 router.delete("/delete", (req, res) => {
-  console.log(req.body);
+  // コレクション生成
+  const UserData = mongoose.model("UserSchema");
 
-  let _id = req.body;
+  const _id = req.body;
 
   // データの削除
-  const UserData = mongoose.model("UserSchema");
   UserData.remove({ _id: _id }, (err) => {
-
+    if (err) {
+      console.log(`Delete Fail!!${err}`);
+    }
+    else {
+      console.log("Delete success");
+    }
   });
 });
 
 
-// データの更新要求
+// データの更新
 router.put("/update", (req, res) => {
-  console.log(req.body);
+  // コレクション生成
+  const UserData = mongoose.model("UserSchema");
 
   const text = req.body.text;
   const _id = req.body._id;
   
   // データの更新
-  const UserData = mongoose.model("UserSchema");
-  UserData.update({ _id: _id }, { $set: { text: text } }, (err, data) => {
+  UserData.update({ _id: _id }, { $set: { text: text } }, (err, docs) => {
+    if (err) {
+      console.log(`Update Fail!!${err}`);
+    }
+    else {
+      console.log("Update success");
+    }
   });
 });
 

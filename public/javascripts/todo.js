@@ -4,8 +4,8 @@ $(function () {
 
 	// 読み込み時
 	$.ajax({
-		url: 'http://18.220.183.113:3000/all',
-		type: 'GET'
+		url: "http://18.220.183.113:3000/all",
+		type: "GET"
 	})
 		.done((res) => {
 			// 成功時表示処理
@@ -43,8 +43,8 @@ function sendForm() {
 		inputEl.val("");
 
 		$.ajax({
-			url: 'http://18.220.183.113:3000/',
-			type: 'POST',
+			url: "http://18.220.183.113:3000/",
+			type: "POST",
 			data: {
 				text: text,
 				complete: false
@@ -64,8 +64,8 @@ function createDeleteBtn(res, i, liEl) {
 			liEl.fadeOut(400, function () {
 				liEl.remove();
 				$.ajax({
-					url: '/delete',
-					type: 'DELETE',
+					url: "/delete",
+					type: "DELETE",
 					data: {
 						_id: res[i]._id
 					}
@@ -85,8 +85,8 @@ function createSaveBtn(res, i, liEl) {
 		let text = $(this).parent().text();
 
 		$.ajax({
-			url: '/update',
-			type: 'PUT',
+			url: "/update",
+			type: "PUT",
 			data: {
 				_id: res[i]._id,
 				text: text //更新するデータ
