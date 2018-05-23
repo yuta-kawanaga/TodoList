@@ -14,13 +14,13 @@ mongoose.connect("mongodb://localhost/todo", (err) => {
 });
 
 // GET home page. 
-router.get("/", function (req, res, next) {
+router.get("/", (req, res, next) => {
   res.render("index", { title: "Express" });
 });
 
 
 // 読み込み時表示処理 
-router.get('/all', function (req, res) {
+router.get("/all", (req, res) => {
   // コレクション生成
   const UserData = mongoose.model("UserSchema");
 
@@ -80,7 +80,7 @@ router.put("/update", (req, res) => {
   const _id = req.body._id;
   
   // データの更新
-  UserData.update({ _id: _id }, { $set: { text: text } }, (err, docs) => {
+  UserData.update({ _id: _id }, { $set: { text: text } }, (err, data) => {
     if (err) {
       console.log(`Update Fail!!${err}`);
     }

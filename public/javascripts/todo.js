@@ -29,8 +29,8 @@ $(function () {
 function sendForm() {
 	// 入力欄
 	const inputEl = $("#todoInput");
-
-	$("#todoForm").on("click", function () {
+        // 送信ボタンが押されたとき
+	$("#todoForm").on("click", () => {
 		// 入力文字を取得
 		const text = inputEl.val();
 
@@ -58,10 +58,10 @@ function sendForm() {
 function createDeleteBtn(res, i, liEl) {
 	const deleteBtn = $('<button id = "deletebtn"><i class="far fa-trash-alt fa-3x"></i></button>');
 	// 削除ボタンが押されたとき
-	deleteBtn.on("click", function () {
+	deleteBtn.on("click", () => {
 		// アラート表示
 		if (window.confirm("削除してもよろしいですか？")) {
-			liEl.fadeOut(400, function () {
+			liEl.fadeOut(400, () => {
 				liEl.remove();
 				$.ajax({
 					url: "/delete",
@@ -80,16 +80,16 @@ function createDeleteBtn(res, i, liEl) {
 function createSaveBtn(res, i, liEl) {
 	let saveBtn = $('<button id = "editbtn" data-iziModal-open=".iziModal"><i class="far fa-save fa-3x"></i></button>')
 	// 保存ボタンが押されたとき
-	saveBtn.on("click", function () {
-
-		let text = $(this).parent().text();
+	saveBtn.on("click", (evt) => {
+                // li要素のテキストの内容
+		const text = $(evt.currentTarget).parent().text();
 
 		$.ajax({
 			url: "/update",
 			type: "PUT",
 			data: {
 				_id: res[i]._id,
-				text: text //更新するデータ
+				text: text
 			}
 		});
 		// 保存ダイアログを出す
